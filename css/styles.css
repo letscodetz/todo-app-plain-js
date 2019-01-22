@@ -33,7 +33,6 @@ body {
     display: flex;
     border-radius: 2px;
     border: 1px solid #d6d7d9;
-    padding: 0 0 0 10px;
 }
 
 .actions input {
