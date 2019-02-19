@@ -60,57 +60,25 @@ body {
     
 }
 
-.item-actions button {
+.list-item button {
     margin: 0 0 0 10px;
     font-size: 1em;
     background-color: #be0031;
     border: 1px solid #be0031;
 }
 
-.count {
-    display: flex;
-    margin: 14px 0 24px 0;
-    padding: 0 0 8px 0;
-    color: blue;
-    border-bottom: 1px solid #d6d7d9;
-}
-
-.count div {
-    margin: 0  0 5px 5px;
-    color: white;
-    text-align: center;
-    background: blue;
-    border-radius: 20px;
-    height: 20px;
-    width: 20px;
-
-}
-
 .list-contents {
-    display: flex;
-    flex-direction: column;
+    padding: 0;
     border-radius: 2px;
     border: 1px solid #d6d7d9;
 }
 
 .list-item {
     display: flex;
+    justify-content: space-between;
     border: 1px solid #d6d7d9;
     padding: 5px;
     background: #e4faf8;
 }
 
-.description {
-    width: 50%;
-}
-
-.item-actions {
-    display: flex;
-   width: 50%;
-}
-.item-actions div {
-    text-align: end;
-    padding: 0 10px 0 0;
-    width: 80%;
-}
 
