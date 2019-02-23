@@ -3,22 +3,18 @@ let allToDo = [];
 
 // removes todo event listener
 // receives the id of remove todo button
-removeTodoEventLister = function (id) {
-    document.getElementById(id).addEventListener('click',removeTodo);
+addClickEventListenerToRemoveTodoButton = function (index) {
+    const removeTodoButton = document.getElementById(index);
+    removeTodoButton.addEventListener('click', removeTodo);
 }
 
 // adds event listener for adding new todo
 const addTodoEventListener = function () {
-    document.getElementById("add-todo").addEventListener("click", createToDo);
+    const plusButton = document.getElementById("add-todo");
+    plusButton.addEventListener("click", createToDo);
 }
 
-const getClickedTodoListItem = function(id) {
-    removeTodoButton = document.getElementById(id);
-    listItem = removeTodoButton.parentElement;
-    return listItem;
-}
-
-const removeTodoTextFromArray = function(text) {
+const removeTodoTextFromArray = function (text) {
     allToDo = allToDo.filter(function (todo) {
         return todo !== text;
     });
@@ -38,7 +34,7 @@ const getTodoContents = function () {
     return todoContents;
 }
 
-const createTodoListItem = function (text, id) {
+const createTodoListItem = function (text, index) {
     // create todo item description
     const itemDescription = document.createElement("div");
     itemDescription.innerHTML = text;
@@ -47,7 +43,7 @@ const createTodoListItem = function (text, id) {
     const removeTodoButton = document.createElement("button");
 
     // assign todo id to the remove todo button
-    removeTodoButton.setAttribute("id", id);
+    removeTodoButton.setAttribute("id", index);
     removeTodoButton.innerHTML = 'x';
 
     // create todo list item
@@ -66,16 +62,16 @@ const createTodoListItem = function (text, id) {
 }
 
 
-
+// creates a todo item
 const createToDo = function () {
 
-    // get the text typed by user and id of todo
-    const todoContents = getTodoContents();
+    // get the text typed by user and index of todo
+    const todoContents = getTodoContents(); // returns that text and id of the you typed
     const text = todoContents.description;
-    const id = todoContents.todoId;
+    const index = todoContents.todoId;
 
     // create todo list item
-    const listItem = createTodoListItem(text, id);
+    const listItem = createTodoListItem(text, index);
 
     // get the todo list 
     const todoList = document.querySelector("ul");
@@ -84,28 +80,30 @@ const createToDo = function () {
     todoList.appendChild(listItem);
 
     // attach event listener for removing todo
-    removeTodoEventLister(id);
+    addClickEventListenerToRemoveTodoButton(index);
 }
 
 
 
 // removes todo on click x button
-const removeTodo = function (e) {
+const removeTodo = function (event) {
 
     //  get id of clicked todo
-    const id = e.target.getAttribute('id');
+    const targetedButton = event.target;
 
     // get todo list item
-    const listItemToRemove = getClickedTodoListItem(id);
+    const listItemToRemove = targetedButton.parentElement;
 
     // get the list container
     const todoList = document.querySelector("ul");
 
-   
-    const text = listItemToRemove.querySelector('div').innerHTML;
-
     // remove todo from the list
     todoList.removeChild(listItemToRemove);
+
+
+    const divForText = listItemToRemove.querySelector('div');
+    const text = divForText.innerHTML;
+
 
     //  remove todo from array of all todo
     removeTodoTextFromArray(text);
